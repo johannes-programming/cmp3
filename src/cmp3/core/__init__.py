@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from functools import partial
 from typing import *
 
@@ -52,5 +53,8 @@ def update(cls: type, /, *, overwrite: Any = False) -> type:
 
 
 @comparable()
-class Comparable:
+class Comparable(ABC):
     __slots__ = ()
+
+    @abstractmethod
+    def __cmp__(self: Self, other: Any) -> Any: ...

@@ -1,13 +1,12 @@
 from abc import ABC, abstractmethod
-from functools import partial
 from typing import *
 
 import setdoc
 
-__all__ = ["Comparable", "comparable"]
+__all__ = ["CmpABC", "cmpDeco"]
 
 
-def comparable(cls: type, /) -> type:
+def cmpDeco(cls: type, /) -> type:
     "This decorator enforces the use of __cmp__ upon a class."
 
     @setdoc.basic
@@ -35,15 +34,15 @@ def comparable(cls: type, /) -> type:
         return self.__cmp__(other).__ne__(0)
 
     func: Callable
-    funcs: list[Callable]
-    funcs = [
+    funcs: tuple[Callable, ...]
+    funcs = (
         __eq__,
         __ge__,
         __gt__,
         __le__,
         __lt__,
         __ne__,
-    ]
+    )
     for func in funcs:
         setattr(cls, func.__name__, func)
         try:
@@ -57,8 +56,8 @@ def comparable(cls: type, /) -> type:
     return cls
 
 
-@comparable()
-class Comparable(ABC):
+@comparable
+class CmpABC(ABC):
     __slots__ = ()
 
     @abstractmethod

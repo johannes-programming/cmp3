@@ -4,15 +4,12 @@ from typing import *
 
 import setdoc
 
-__all__ = ["Comparable", "comparable", "update_rich_cmp"]
+__all__ = ["Comparable", "comparable"]
 
 
-def comparable(*, overwrites: Any = False) -> partial:
-    "This function returns a decorator."
-    return partial(update_rich_cmp, overwrites=overwrites)
+def comparable(cls: type, /) -> type:
+    "This decorator enforces the use of __cmp__ upon a class."
 
-
-def update_rich_cmp(cls: type, /, *, overwrites: Any = False) -> type:
     @setdoc.basic
     def __eq__(self: Self, other: Any) -> Any:
         return self.__cmp__(other).__eq__(0)
@@ -48,8 +45,6 @@ def update_rich_cmp(cls: type, /, *, overwrites: Any = False) -> type:
         __ne__,
     ]
     for func in funcs:
-        if hasattr(cls, func.__name__) and not overwrites:
-            continue
         setattr(cls, func.__name__, func)
         try:
             func.__module__ = cls.__module__

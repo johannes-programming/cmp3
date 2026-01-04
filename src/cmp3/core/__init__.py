@@ -4,36 +4,37 @@ from typing import *
 
 import setdoc
 
-__all__ = ["Comparable", "comparable"]
+__all__ = ["Comparable", "comparable", "update_rich_cmp"]
 
 
-def comparable(*, overwrite: Any = False) -> type:
-    return partial(update, overwrite=overwrite)
+def comparable(*, overwrites: Any = False) -> partial:
+    "This function returns a decorator."
+    return partial(update_rich_cmp, overwrites=overwrites)
 
 
-def update(cls: type, /, *, overwrite: Any = False) -> type:
+def update_rich_cmp(cls: type, /, *, overwrites: Any = False) -> type:
     @setdoc.basic
-    def __eq__(self: Self, other: Any) -> bool:
+    def __eq__(self: Self, other: Any) -> Any:
         return self.__cmp__(other) == 0
 
     @setdoc.basic
-    def __ge__(self: Self, other: Any) -> bool:
+    def __ge__(self: Self, other: Any) -> Any:
         return self.__cmp__(other) >= 0
 
     @setdoc.basic
-    def __gt__(self: Self, other: Any) -> bool:
+    def __gt__(self: Self, other: Any) -> Any:
         return self.__cmp__(other) > 0
 
     @setdoc.basic
-    def __le__(self: Self, other: Any) -> bool:
+    def __le__(self: Self, other: Any) -> Any:
         return self.__cmp__(other) <= 0
 
     @setdoc.basic
-    def __lt__(self: Self, other: Any) -> bool:
+    def __lt__(self: Self, other: Any) -> Any:
         return self.__cmp__(other) < 0
 
     @setdoc.basic
-    def __ne__(self: Self, other: Any) -> bool:
+    def __ne__(self: Self, other: Any) -> Any:
         return self.__cmp__(other) != 0
 
     func: Callable
@@ -47,8 +48,17 @@ def update(cls: type, /, *, overwrite: Any = False) -> type:
         __ne__,
     ]
     for func in funcs:
-        if overwrite or not hasattr(cls, func.__name__):
-            setattr(cls, func.__name__, func)
+        if hasattr(cls, func.__name__) and not overwrites:
+            continue
+        setattr(cls, func.__name__, func)
+        try:
+            func.__module__ = cls.__module__
+        except AttributeError:
+            pass
+        try:
+            func.__qualname__ = cls.__qualname__
+        except AttributeError:
+            pass
     return cls
 
 

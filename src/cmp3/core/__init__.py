@@ -56,7 +56,7 @@ def cmpDeco(cls: type, /) -> type:
     return cls
 
 
-@comparable
+@cmpDeco
 class CmpABC(ABC):
     __slots__ = ()
 

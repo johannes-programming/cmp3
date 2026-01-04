@@ -15,27 +15,27 @@ def comparable(*, overwrites: Any = False) -> partial:
 def update_rich_cmp(cls: type, /, *, overwrites: Any = False) -> type:
     @setdoc.basic
     def __eq__(self: Self, other: Any) -> Any:
-        return self.__cmp__(other) == 0
+        return self.__cmp__(other).__eq__(0)
 
     @setdoc.basic
     def __ge__(self: Self, other: Any) -> Any:
-        return self.__cmp__(other) >= 0
+        return self.__cmp__(other).__ge__(0)
 
     @setdoc.basic
     def __gt__(self: Self, other: Any) -> Any:
-        return self.__cmp__(other) > 0
+        return self.__cmp__(other).__gt__(0)
 
     @setdoc.basic
     def __le__(self: Self, other: Any) -> Any:
-        return self.__cmp__(other) <= 0
+        return self.__cmp__(other).__le__(0)
 
     @setdoc.basic
     def __lt__(self: Self, other: Any) -> Any:
-        return self.__cmp__(other) < 0
+        return self.__cmp__(other).__lt__(0)
 
     @setdoc.basic
     def __ne__(self: Self, other: Any) -> Any:
-        return self.__cmp__(other) != 0
+        return self.__cmp__(other).__ne__(0)
 
     func: Callable
     funcs: list[Callable]

@@ -10,6 +10,14 @@ def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> int:
     "This function returns a value that compares to 0 as x compares to y."
     if mode == "portingguide":
         return (x > y) - (x < y)
+    if mode == "poset":
+        if (x <= y) and (y <= x):
+            return 0
+        if (x <= y) and (not y <= x):
+            return -1
+        if (not x <= y) and (y <= x):
+            return 1
+        return float("nan")
     raise ValueError
 
 

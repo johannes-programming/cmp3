@@ -6,7 +6,7 @@ import setdoc
 __all__ = ["CmpABC", "cmp", "cmpDeco"]
 
 
-def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> int:
+def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> float | int:
     "This function returns a value that compares to 0 as x compares to y."
     if mode == "portingguide":
         return (x > y) - (x < y)

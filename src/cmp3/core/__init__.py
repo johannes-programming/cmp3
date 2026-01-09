@@ -3,7 +3,14 @@ from typing import *
 
 import setdoc
 
-__all__ = ["CmpABC", "cmpDeco"]
+__all__ = ["CmpABC", "cmp", "cmpDeco"]
+
+
+def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> int:
+    "This function returns a value that compares to 0 as x compares to y."
+    if mode == "portingguide":
+        return (x > y) - (x < y)
+    raise ValueError
 
 
 def cmpDeco(cls: type, /) -> type:
@@ -50,7 +57,7 @@ def cmpDeco(cls: type, /) -> type:
         except AttributeError:
             pass
         try:
-            func.__qualname__ = cls.__qualname__
+            func.__qualname__ = f"{cls.__qualname__}.{func.__name__}"
         except AttributeError:
             pass
     return cls

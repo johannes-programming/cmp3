@@ -2,7 +2,7 @@ import math
 import unittest
 from typing import *
 
-from cmp3 import core
+from cmp3.core import cmp
 
 __all__ = ["TestCmpPoset"]
 
@@ -10,20 +10,20 @@ __all__ = ["TestCmpPoset"]
 class TestCmpPoset(unittest.TestCase):
     def test_poset_equal(self: Self) -> None:
         # subset ordering: same set
-        self.assertEqual(core.cmp_poset({1, 2}, {1, 2}), 0)
+        self.assertEqual(cmp({1, 2}, {1, 2}, mode="le"), 0)
 
     def test_poset_less(self: Self) -> None:
         # subset ordering: strict subset
-        self.assertEqual(core.cmp_poset({1}, {1, 2}), -1)
+        self.assertEqual(cmp({1}, {1, 2}, mode="le"), -1)
 
     def test_poset_greater(self: Self) -> None:
         # subset ordering: strict superset
-        self.assertEqual(core.cmp_poset({1, 2}, {1}), 1)
+        self.assertEqual(cmp({1, 2}, {1}, mode="le"), 1)
 
     def test_poset_incomparable(self: Self) -> None:
         # incomparable in subset ordering
         res: Any
-        res = core.cmp_poset({1}, {2})
+        res = cmp({1}, {2}, mode="le")
         self.assertTrue(math.isnan(res))
 
 

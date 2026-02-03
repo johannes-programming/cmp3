@@ -38,6 +38,7 @@ class TestCmpPoset(unittest.TestCase):
 
     def test_poset_incomparable(self: Self) -> None:
         # incomparable in subset ordering
+        res: Any
         res = core.cmp_poset({1}, {2})
         self.assertTrue(math.isnan(res))
 

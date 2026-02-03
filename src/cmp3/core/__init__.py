@@ -11,14 +11,28 @@ def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> float | int:
     if mode == "portingguide":
         return (x > y) - (x < y)
     if mode == "poset":
-        if (x <= y) and (y <= x):
-            return 0
-        if (x <= y) and (not y <= x):
-            return -1
-        if (not x <= y) and (y <= x):
-            return 1
-        return float("nan")
+        return cmp_poset(x, y)
+    if mode == "setoid":
+        return cmp_setoid(x, y)
     raise ValueError
+
+def cmp_poset(x: Any, y: Any, /) -> float | int:
+    "This function returns cmp(x, y) under the assumption that they are in a poset."
+    if (x <= y) and (y <= x):
+        return 0
+    if (x <= y) and (not y <= x):
+        return -1
+    if (not x <= y) and (y <= x):
+        return 1
+    return float("nan")
+
+def cmp_setoid(x: Any, y: Any, /) -> float | int:
+    "This function returns cmp(x, y) under the assumption that they are in a setoid."
+    if x == y:
+        return 0
+    else:
+        return float("nan")
+
 
 
 def cmpDeco(cls: type, /) -> type:

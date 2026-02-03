@@ -28,9 +28,9 @@ class TestPoint(unittest.TestCase):
 
         a = Point(1)
         b = Point(2)
-        self.assertEqual(cmp_mode(a, b, mode="dunder"), -1)
-        self.assertEqual(cmp_mode(b, a, mode="dunder"), 1)
-        self.assertEqual(cmp_mode(a, a, mode="dunder"), 0)
+        self.assertEqual(cmp_mode(a, b, mode="magic"), -1)
+        self.assertEqual(cmp_mode(b, a, mode="magic"), 1)
+        self.assertEqual(cmp_mode(a, a, mode="magic"), 0)
 
     def test_cmpabc_is_abstract(self: Self) -> None:
         with self.assertRaises(TypeError):

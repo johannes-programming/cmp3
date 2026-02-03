@@ -2,7 +2,7 @@ import math
 import unittest
 from typing import *
 
-from cmp3.core import CmpABC, cmp_mode, cmp_poset
+from cmp3.core import CmpABC, cmp_le, cmp_mode
 
 __all__ = ["TestIncomparable"]
 
@@ -21,20 +21,21 @@ class TestIncomparable(unittest.TestCase):
         self.assertEqual(cmp_mode(1, 2, mode="portingguide"), -1)
 
     def test_equality_mode(self: Self) -> None:
-        self.assertEqual(cmp_mode(10, 10, mode="equality"), 0)
-        self.assertIsNone(cmp_mode(10, 11, mode="equality"))
+        self.assertEqual(cmp_mode(10, 10, mode="eq_strict"), 0)
+        self.assertIsNone(cmp_mode(10, 11, mode="eq_strict"))
 
     def test_poset_total_order_ints(self: Self) -> None:
-        self.assertEqual(cmp_poset(1, 1), 0)
-        self.assertEqual(cmp_poset(1, 2), -1)
-        self.assertEqual(cmp_poset(2, 1), 1)
+        self.assertEqual(cmp_le(1, 1), 0)
+        self.assertEqual(cmp_le(1, 2), -1)
+        self.assertEqual(cmp_le(2, 1), 1)
 
     def test_poset_incomparable(self: Self) -> None:
+        result: object
         x: Incomparable
         y: Incomparable
         x = Incomparable()
         y = Incomparable()
-        result = cmp_poset(x, y)
+        result = cmp_le(x, y)
         self.assertTrue(math.isnan(result))
 
     def test_cmp_mode_invalid_raises(self: Self) -> None:
@@ -64,9 +65,9 @@ class TestPoint(unittest.TestCase):
 
         a = Point(1)
         b = Point(2)
-        self.assertEqual(cmp_mode(a, b, mode="dunder"), -1)
-        self.assertEqual(cmp_mode(b, a, mode="dunder"), 1)
-        self.assertEqual(cmp_mode(a, a, mode="dunder"), 0)
+        self.assertEqual(cmp_mode(a, b, mode="magic"), -1)
+        self.assertEqual(cmp_mode(b, a, mode="magic"), 1)
+        self.assertEqual(cmp_mode(a, a, mode="magic"), 0)
 
     def test_cmpabc_is_abstract(self: Self) -> None:
         with self.assertRaises(TypeError):

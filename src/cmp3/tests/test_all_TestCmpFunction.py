@@ -21,9 +21,9 @@ class TestCmpFunction(unittest.TestCase):
 
     def test_poset_mode_uses_poset_semantics(self: Self) -> None:
         # For totally ordered ints, this should behave like normal cmp
-        self.assertEqual(cmp(1, 2, mode="poset"), -1)
-        self.assertEqual(cmp(2, 1, mode="poset"), 1)
-        self.assertEqual(cmp(5, 5, mode="poset"), 0)
+        self.assertEqual(cmp(1, 2, mode="le"), -1)
+        self.assertEqual(cmp(2, 1, mode="le"), 1)
+        self.assertEqual(cmp(5, 5, mode="le"), 0)
 
     def test_invalid_mode_raises(self: Self) -> None:
         with self.assertRaises(ValueError):

@@ -9,7 +9,7 @@
                 <a>cmp3</a>
                 <p>Version:
                     <select id="version">
-                        <option selected>0.6.2</option>
+                        <option selected>0.6.6</option>
                     </select>
                 </p>
             </dt>
@@ -30,31 +30,72 @@
                         <dl class="heading4">
                             <dt>class cmp3.CmpABC()</dt>
                             <dd>
+                                <p>This ABC can serve as a parent for classes using <code>__cmp__</code>.</p>
                                 <dl class="heading4">
                                     <dt>__slots__ = ()</dt>
-                                    <dd></dd>
+                                    <dd>
+                                    </dd>
                                     <dt>__cmp__(other: Any) -> Any</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <p>
+                                            This abstract magic method is to be implemented in decendent classes 
+                                            returning a value that compares to <code>0</code> as <code>self</code> compares to <code>other</code>.
+                                        </p>
+                                    </dd>
                                     <dt>__eq__(other: Any) -> Any</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <p>This magic method is implemented as <code>return self.__cmp__(other).__eq__(0)</code>.</p>
+                                    </dd>
                                     <dt>__ge__(other: Any) -> Any</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <p>This magic method works analogous to <code>__eq__</code>.</p>
+                                    </dd>
                                     <dt>__gt__(other: Any) -> Any</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <p>This magic method works analogous to <code>__eq__</code>.</p>
+                                    </dd>
                                     <dt>__le__(other: Any) -> Any</dt>
-                                    <dd></dd>
-                                    <dt>__le__(other: Any) -> Any</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <p>This magic method works analogous to <code>__eq__</code>.</p>
+                                    </dd>
+                                    <dt>__lt__(other: Any) -> Any</dt>
+                                    <dd>
+                                        <p>This magic method works analogous to <code>__eq__</code>.</p>
+                                    </dd>
                                     <dt>__ne__(other: Any) -> Any</dt>
-                                    <dd></dd>
+                                    <dd>
+                                        <p>This magic method works analogous to <code>__eq__</code>.</p>
+                                    </dd>
                                 </dl>
                             </dd>
-                            <dt>cmp3.cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> int</dt>
-                            <dd></dd>
+                            <dt>cmp3.cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> float | int</dt>
+                            <dd>
+                                <p>
+                                    This function returns a value that compares to <code>0</code> 
+                                    as <code>x</code> compares to <code>y</code>. 
+                                </p>
+                                <p>
+                                    The <code>"dunder"</code> mode returns <code>x.__cmp__(y)</code>.
+                                </p>
+                                <p>
+                                    The <code>"portingguide"</code> mode uses the implementation of <code>cmp</code>
+                                    that is recommended by the portingguide.
+                                </p>
+                                <p>
+                                    The <code>"poset"</code> mode utilizes <code>x <= y</code> and <code>y <= x</code>. 
+                                    It assumes that <code><=</code> provides a partial order.
+                                </p>
+                            </dd>
                             <dt>cmp3.cmpDeco(cls: type) -> type</dt>
-                            <dd></dd>
-                            <dt id="test">cmp3.test()</dt>
-                            <dd id="testingCorpus"></dd>
+                            <dd>
+                                <p>
+                                    This decorator writes the six rich comparison magic methods into <code>cls</code>.
+                                    These magic methods are implemented just as described under <code>CmpABC</code>.
+                                    Indeed, the decorator is used in the implementation of <code>CmpABC</code>.
+                                </p>
+                            </dd>
+                            <dt id="0.6.6-test">cmp3.test()</dt>
+                            <dd class="testingCorpus"></dd>
                         </dl>
                     </dd>
                     <dt id="license">License</dt>

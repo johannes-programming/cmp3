@@ -8,6 +8,8 @@ __all__ = ["CmpABC", "cmp", "cmpDeco"]
 
 def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> float | int:
     "This function returns a value that compares to 0 as x compares to y."
+    if mode == "dunder":
+        return x.__cmp__(y)
     if mode == "portingguide":
         return (x > y) - (x < y)
     if mode == "poset":
@@ -16,7 +18,7 @@ def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> float | int:
 
 
 def cmp_poset(x: Any, y: Any, /) -> float | int:
-    "This function returns a value that compares to 0 as x compares to y under the assumption that both arguments belong to a poset."
+    "This function returns a value that compares to 0 as x compares to y assuming a partial order."
     if x <= y:
         if y <= x:
             return 0

@@ -18,7 +18,10 @@ def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> Any:
             return cmp_mode(x, y, mode=part)
         except Exception as exc:
             errors.append(exc)
-    raise ExceptionGroup("No submode worked.", errors)
+    if len(errors):
+        raise ExceptionGroup("No submode worked.", errors)
+    else:
+        raise ValueError("No submodes provided.")
 
 
 def cmp_mode(x: Any, y: Any, /, *, mode: str) -> Any:

@@ -1,54 +1,9 @@
-import math
 import unittest
 from typing import *
 
-from cmp3.core import CmpABC, cmp, cmp_poset, cmpDeco
+from cmp3.core import CmpABC, cmpDeco
 
-
-class TestCmpFunction(unittest.TestCase):
-    def test_portingguide_less(self: Self) -> None:
-        self.assertEqual(cmp(1, 2), -1)
-        self.assertEqual(cmp(-5, -1), -1)
-
-    def test_portingguide_equal(self: Self) -> None:
-        self.assertEqual(cmp(3, 3), 0)
-        self.assertEqual(cmp("a", "a"), 0)
-
-    def test_portingguide_greater(self: Self) -> None:
-        self.assertEqual(cmp(2, 1), 1)
-        self.assertEqual(cmp("b", "a"), 1)
-
-    def test_poset_mode_uses_poset_semantics(self: Self) -> None:
-        # For totally ordered ints, this should behave like normal cmp
-        self.assertEqual(cmp(1, 2, mode="poset"), -1)
-        self.assertEqual(cmp(2, 1, mode="poset"), 1)
-        self.assertEqual(cmp(5, 5, mode="poset"), 0)
-
-    def test_invalid_mode_raises(self: Self) -> None:
-        with self.assertRaises(ValueError):
-            cmp(1, 2, mode="something-else")
-
-
-class TestCmpPoset(unittest.TestCase):
-    def test_total_order_ints(self: Self) -> None:
-        self.assertEqual(cmp_poset(1, 2), -1)
-        self.assertEqual(cmp_poset(2, 1), 1)
-        self.assertEqual(cmp_poset(3, 3), 0)
-
-    def test_incomparable_returns_nan(self: Self) -> None:
-        class Incomparable:
-            def __le__(self: Self, other: Any) -> bool:
-                # Always False, so no order relation is established
-                return False
-
-        result: Any
-        x: Incomparable
-        y: Incomparable
-
-        x = Incomparable()
-        y = Incomparable()
-        result = cmp_poset(x, y)
-        self.assertTrue(math.isnan(result))
+__all__ = ["TestCmpABCAndDeco"]
 
 
 # A concrete implementation of CmpABC for testing

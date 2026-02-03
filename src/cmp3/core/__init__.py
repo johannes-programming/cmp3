@@ -11,14 +11,22 @@ def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> float | int:
     if mode == "portingguide":
         return (x > y) - (x < y)
     if mode == "poset":
-        if (x <= y) and (y <= x):
+        return cmp_poset(x, y)
+    raise ValueError("%r is not an appropriate value for mode." % mode)
+
+
+def cmp_poset(x: Any, y: Any, /) -> float | int:
+    "This function returns a value that compares to 0 as x compares to y under the assumption that both arguments belong to a poset."
+    if x <= y:
+        if y <= x:
             return 0
-        if (x <= y) and (not y <= x):
+        else:
             return -1
-        if (not x <= y) and (y <= x):
+    else:
+        if y <= x:
             return 1
-        return float("nan")
-    raise ValueError
+        else:
+            return float("nan")
 
 
 def cmpDeco(cls: type, /) -> type:

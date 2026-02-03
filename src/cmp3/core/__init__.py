@@ -8,13 +8,30 @@ __all__ = ["CmpABC", "cmp", "cmpDeco"]
 
 def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> Any:
     "This function returns a value that compares to 0 as x compares to y."
+    errors: list[Exception]
+    part: str
+    if not any(map(str.isspace, mode)):
+        return cmp_mode(x, y, mode=mode)
+    errors = list()
+    for part in mode.split():
+        try:
+            return cmp_mode(x, y, mode=part)
+        except Exception as exc:
+            errors.append(exc)
+    raise ExceptionGroup("No submode worked.", errors)
+
+
+def cmp_mode(x: Any, y: Any, /, *, mode: str) -> Any:
+    "This function implements submodes."
     if mode == "dunder":
         return x.__cmp__(y)
+    if mode == "equality":
+        return 0 if x == y else None
     if mode == "portingguide":
         return (x > y) - (x < y)
     if mode == "poset":
         return cmp_poset(x, y)
-    raise ValueError("%r is not an appropriate value for mode." % mode)
+    raise ValueError("%r is not a recognized mode." % mode)
 
 
 def cmp_poset(x: Any, y: Any, /) -> float | int:

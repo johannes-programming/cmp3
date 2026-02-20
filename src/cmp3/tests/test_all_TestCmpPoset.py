@@ -2,6 +2,8 @@ import math
 import unittest
 from typing import *
 
+import setdoc
+
 from cmp3.core import cmp
 
 __all__ = ["TestCmpPoset"]
@@ -15,6 +17,7 @@ class TestCmpPoset(unittest.TestCase):
 
     def test_incomparable_returns_nan(self: Self) -> None:
         class Incomparable:
+            @setdoc.basic
             def __le__(self: Self, other: Any) -> bool:
                 # Always False, so no order relation is established
                 return False

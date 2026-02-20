@@ -1,17 +1,21 @@
 import unittest
 from typing import *
 
+import setdoc
+
 from cmp3 import core
 
 __all__ = ["TestCmpDecoAndCmpABC"]
 
 
 class Number(core.CmpABC):
+    @setdoc.basic
     def __cmp__(self: Self, other: Any) -> Any:
         if not isinstance(other, Number):
             return NotImplemented
         return (self.value > other.value) - (self.value < other.value)
 
+    @setdoc.basic
     def __init__(self: Self, value: int) -> None:
         self.value = value
 

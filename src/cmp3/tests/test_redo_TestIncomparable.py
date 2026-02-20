@@ -2,14 +2,17 @@ import math
 import unittest
 from typing import *
 
+import setdoc
+
 from cmp3.core import CmpABC, cmp_le, cmp_mode
 
 __all__ = ["TestIncomparable"]
 
 
 class Incomparable:
-    """Type whose instances are never <= each other."""
+    "This class is a type whose instances are never <= each other."
 
+    @setdoc.basic
     def __le__(self: Self, other: Any) -> bool:
         return False
 
@@ -44,17 +47,19 @@ class TestIncomparable(unittest.TestCase):
 
 
 class Point(CmpABC):
-    """Simple comparable type based on an integer value."""
+    "This class is a simple comparable type based on an integer value."
 
     __slots__ = ("value",)
 
-    def __init__(self: Self, value: int) -> None:
-        self.value = value
-
+    @setdoc.basic
     def __cmp__(self: Self, other: Any) -> int:
         if isinstance(other, Point):
             return (self.value > other.value) - (self.value < other.value)
         return NotImplemented
+
+    @setdoc.basic
+    def __init__(self: Self, value: int) -> None:
+        self.value = value
 
 
 class TestPoint(unittest.TestCase):
@@ -62,7 +67,6 @@ class TestPoint(unittest.TestCase):
     def test_dunder_mode_uses___cmp__(self: Self) -> None:
         a: Point
         b: Point
-
         a = Point(1)
         b = Point(2)
         self.assertEqual(cmp_mode(a, b, mode="magic"), -1)

@@ -19,14 +19,14 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "setdoc>=1.2.6,<2",
+    "setdoc>=1.2.10,<2",
 ]
 description = "This project updates the concept of __cmp__ for python3."
 keywords = []
 name = "cmp3"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.0.2"
+version = "1.0.3"
 
 [project.license]
 file = "LICENSE.txt"

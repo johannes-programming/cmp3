@@ -1,6 +1,8 @@
 import unittest
 from typing import *
 
+import setdoc
+
 from cmp3 import core
 
 __all__ = ["TestCmpDecoOnPlainClass"]
@@ -10,13 +12,15 @@ class TestCmpDecoOnPlainClass(unittest.TestCase):
     def test_decorator_on_non_abc_class(self: Self) -> None:
         @core.cmpDeco
         class Plain:
-            def __init__(self: Self, x: int) -> None:
-                self.x = x
-
+            @setdoc.basic
             def __cmp__(self: Self, other: Any) -> Any:
                 if not isinstance(other, Plain):
                     return NotImplemented
                 return (self.x > other.x) - (self.x < other.x)
+
+            @setdoc.basic
+            def __init__(self: Self, x: int) -> None:
+                self.x = x
 
         p1: Plain
         p2: Plain

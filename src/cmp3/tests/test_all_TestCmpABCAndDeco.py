@@ -1,6 +1,8 @@
 import unittest
 from typing import *
 
+import setdoc
+
 from cmp3.core import CmpABC, cmpDeco
 
 __all__ = ["TestCmpABCAndDeco"]
@@ -8,24 +10,28 @@ __all__ = ["TestCmpABCAndDeco"]
 
 # A concrete implementation of CmpABC for testing
 class Box(CmpABC):
-    def __init__(self: Self, value: Any) -> None:
-        self.value = value
-
+    @setdoc.basic
     def __cmp__(self: Self, other: Any) -> Any:
         if not isinstance(other, Box):
             return NotImplemented
         return (self.value > other.value) - (self.value < other.value)
 
-
-@cmpDeco
-class DecoratedBox:
+    @setdoc.basic
     def __init__(self: Self, value: Any) -> None:
         self.value = value
 
+
+@cmpDeco
+class DecoratedBox:
+    @setdoc.basic
     def __cmp__(self: Self, other: Any) -> Any:
         if not isinstance(other, DecoratedBox):
             return NotImplemented
         return (self.value > other.value) - (self.value < other.value)
+
+    @setdoc.basic
+    def __init__(self: Self, value: Any) -> None:
+        self.value = value
 
 
 class TestCmpABCAndDeco(unittest.TestCase):

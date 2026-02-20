@@ -104,7 +104,7 @@
                                     Indeed, the decorator is used in the implementation of <code>CmpABC</code>.
                                 </p>
                             </dd>
-                            <dt id="1-test">cmp3.test() -> unittest.TextTestRunner</dt>
+                            <dt id="1--test">cmp3.test() -> unittest.TextTestRunner</dt>
                             <dd class="testingCorpus"></dd>
                         </dl>
                     </dd>
@@ -116,13 +116,20 @@
             </dd>
         </dl>
     </body>
-    <script src="https://www.johannes-programming.online/script.js"></script>
-    <script>
-        setupLinksCorpus("cmp3");
-        setupInstallCorpus("cmp3");
-        setupTestingCorpus("cmp3");
-        setupLicenseCorpus("cmp3");
+    <script type="module">
+        import {
+            setupImpressumCorpus,
+            setupInstallCorpus,
+            setupLicenseCorpus,
+            setupLinksCorpus,
+            setupTestingCorpus,
+            addMetaAndLinkTags,
+        } from "https://www.johannes-programming.online/main.js";
         setupImpressumCorpus("cmp3");
+        setupInstallCorpus("cmp3");
+        setupLicenseCorpus("cmp3");
+        setupLinksCorpus("cmp3");
+        setupTestingCorpus("cmp3");
         addMetaAndLinkTags();
     </script>
 </html>

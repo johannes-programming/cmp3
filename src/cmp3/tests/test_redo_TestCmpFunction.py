@@ -12,7 +12,9 @@ class TestCmpFunction(unittest.TestCase):
         self.assertEqual(cmp(2, 1), 1)
         self.assertEqual(cmp(1, 2), -1)
 
-    def test_mode_without_whitespace_goes_directly_to_cmp_mode(self: Self) -> None:
+    def test_mode_without_whitespace_goes_directly_to_cmp_mode(
+        self: Self,
+    ) -> None:
         # Just checks result; behavior should match portingguide
         self.assertEqual(cmp(3, 4, mode="portingguide"), -1)
 
@@ -24,7 +26,9 @@ class TestCmpFunction(unittest.TestCase):
         # int has no __cmp__, so "dunder" fails, then "portingguide" works
         self.assertEqual(cmp(1, 2, mode="magic portingguide"), -1)
 
-    def test_whitespace_modes_all_fail_raise_exceptiongroup(self: Self) -> None:
+    def test_whitespace_modes_all_fail_raise_exceptiongroup(
+        self: Self,
+    ) -> None:
         exc: ExceptionGroup
         # For int vs str, "dunder", "poset", and "portingguide" all raise
         with self.assertRaises(ExceptionGroup) as cm:

@@ -9,6 +9,8 @@ __all__ = ["TestCmpDecoAndCmpABC"]
 
 
 class Number(core.CmpABC):
+    value: int
+
     @setdoc.basic
     def __cmp__(self: Self, other: Any) -> Any:
         if not isinstance(other, Number):
@@ -22,32 +24,48 @@ class Number(core.CmpABC):
 
 
 class TestCmpDecoAndCmpABC(unittest.TestCase):
-    def setUp(self: Self) -> None:
-        self.a = Number(1)
-        self.b = Number(2)
-        self.c = Number(1)
 
     def test_eq_ne(self: Self) -> None:
-        self.assertTrue(self.a == self.c)
-        self.assertFalse(self.a == self.b)
-        self.assertTrue(self.a != self.b)
-        self.assertFalse(self.a != self.c)
+        a: Number
+        b: Number
+        c: Number
+        a = Number(1)
+        b = Number(2)
+        c = Number(1)
+        self.assertTrue(a == c)
+        self.assertFalse(a == b)
+        self.assertTrue(a != b)
+        self.assertFalse(a != c)
 
     def test_lt_le(self: Self) -> None:
-        self.assertTrue(self.a < self.b)
-        self.assertTrue(self.a <= self.b)
-        self.assertTrue(self.a <= self.c)
-        self.assertFalse(self.b < self.a)
+        a: Number
+        b: Number
+        c: Number
+        a = Number(1)
+        b = Number(2)
+        c = Number(1)
+        self.assertTrue(a < b)
+        self.assertTrue(a <= b)
+        self.assertTrue(a <= c)
+        self.assertFalse(b < a)
 
     def test_gt_ge(self: Self) -> None:
-        self.assertTrue(self.b > self.a)
-        self.assertTrue(self.b >= self.a)
-        self.assertTrue(self.b >= self.c)
-        self.assertFalse(self.a > self.b)
+        a: Number
+        b: Number
+        c: Number
+        a = Number(1)
+        b = Number(2)
+        c = Number(1)
+        self.assertTrue(b > a)
+        self.assertTrue(b >= a)
+        self.assertTrue(b >= c)
+        self.assertFalse(a > b)
 
     def test_cmpabc_is_abstract(self: Self) -> None:
+        cls: Any
+        cls = core.CmpABC
         with self.assertRaises(TypeError):
-            core.CmpABC()  # abstract, cannot be instantiated
+            cls()  # abstract, cannot be instantiated
 
 
 if __name__ == "__main__":

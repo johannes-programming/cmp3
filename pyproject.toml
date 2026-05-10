@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools>=64.0",
+    "setuptools>=77.0",
 ]
 
 [project]
@@ -10,26 +10,25 @@ authors = [
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Typing :: Typed",
 ]
 dependencies = [
     "setdoc>=1.2.10,<2",
 ]
 description = "This project updates the concept of __cmp__ for python3."
 keywords = []
+license = "MIT"
+license-files = [
+    "LICENSE.txt",
+]
 name = "cmp3"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.0.3"
-
-[project.license]
-file = "LICENSE.txt"
+version = "1.0.6"
 
 [project.urls]
 Download = "https://pypi.org/project/cmp3/#files"

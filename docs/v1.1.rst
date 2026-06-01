@@ -1,0 +1,118 @@
+Introduction
+------------
+
+This project updates the concept of ``__cmp__`` for python3.
+
+Installation
+------------
+
+To install ``cmp3``, you can use ``pip``. Open your terminal and run:
+
+.. code-block:: shell
+
+    pip install cmp3
+
+Typing
+------
+
+The typing conforms strictly to ``mypy``.
+
+Features
+--------
+
+``class cmp3.CmpABC()``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+This ABC can serve as a parent for classes using ``__cmp__``.
+
+``__slots__ = ()``
+^^^^^^^^^^^^^^^^^^
+
+``__cmp__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This abstract magic method is to be implemented in descendant classes returning a value that compares to ``0`` as ``self`` compares to ``other``.
+
+``__eq__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This magic method is implemented as ``return self.__cmp__(other).__eq__(0)``.
+
+``__ge__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This magic method works analogous to ``__eq__``.
+
+``__gt__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This magic method works analogous to ``__eq__``.
+
+``__le__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This magic method works analogous to ``__eq__``.
+
+``__lt__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This magic method works analogous to ``__eq__``.
+
+``__ne__(other: Any) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This magic method works analogous to ``__eq__``.
+
+``cmp3.cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> Any``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This function returns a value that compares to ``0`` as ``x`` compares to ``y``. If mode contains whitespace then it is split and tried sequentially until a submode is reached that does not raise an ``Exception``.
+
+The ``"magic"`` mode returns ``x.__cmp__(y)``.
+
+The ``"eq"`` mode returns ``0 if x == y else float("nan")``.
+
+The ``"eq_strict"`` mode returns ``0 if x == y else None``.
+
+The ``"le"`` mode utilizes ``x <= y`` and ``y <= x``. It assumes that ``<=`` provides a partial order.
+
+The ``"portingguide"`` mode uses the implementation of ``cmp`` that is recommended by the portingguide.
+
+``cmp3.cmpDeco(cls: type[Target], /) -> type[Target]``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This decorator writes the six rich comparison magic methods into ``cls``.
+These magic methods are implemented just as described under ``CmpABC``.
+
+``cmp3.tests.test() -> unittest.TextTestResult``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This project can be tested through its ``test`` function.
+
+.. code-block:: python
+
+    import cmp3.tests
+    cmp3.tests.test()
+
+License
+-------
+
+This project is licensed under the MIT License.
+
+Links
+-----
+
+- Download: https://pypi.org/project/cmp3/#files
+- Index: https://pypi.org/project/cmp3/
+- Source: https://github.com/johannes-programming/cmp3/
+- Website: https://cmp3.johannes-programming.online/
+
+Impressum
+---------
+
+**Johannes Programming**
+
+- Name: Johannes
+- Email: johannes.programming@gmail.com
+- Homepage: https://www.johannes-programming.online/
+- Gravatar: https://www.johannes-programming.fyi/

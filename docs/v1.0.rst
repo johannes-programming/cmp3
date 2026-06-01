@@ -3,6 +3,10 @@ Introduction
 
 This project updates the concept of ``__cmp__`` for python3.
 
+.. container:: warning
+
+    **Warning:** The minor version ``1.0`` of ``v440`` has reached end-of-life.
+
 Installation
 ------------
 

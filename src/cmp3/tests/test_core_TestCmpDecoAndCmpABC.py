@@ -1,14 +1,14 @@
 import unittest
-from typing import *
+from typing import Any, Self
 
 import setdoc
 
-from cmp3 import core
+from cmp3.core.CmpABC import CmpABC
 
 __all__ = ["TestCmpDecoAndCmpABC"]
 
 
-class Number(core.CmpABC):
+class Number(CmpABC):
     value: int
 
     @setdoc.basic
@@ -62,10 +62,8 @@ class TestCmpDecoAndCmpABC(unittest.TestCase):
         self.assertFalse(a > b)
 
     def test_cmpabc_is_abstract(self: Self) -> None:
-        cls: Any
-        cls = core.CmpABC
         with self.assertRaises(TypeError):
-            cls()  # abstract, cannot be instantiated
+            CmpABC()  # type: ignore[abstract]
 
 
 if __name__ == "__main__":

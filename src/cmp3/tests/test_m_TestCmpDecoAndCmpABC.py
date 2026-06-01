@@ -1,14 +1,14 @@
 import unittest
-from typing import *
+from typing import Any, Self
 
 import setdoc
 
-from cmp3 import core
+from cmp3.core.CmpABC import CmpABC
 
 __all__ = ["TestCmpDecoAndCmpABC"]
 
 
-class Number(core.CmpABC):
+class Number(CmpABC):
     @setdoc.basic
     def __cmp__(self: Self, other: Any) -> Any:
         if not isinstance(other, Number):

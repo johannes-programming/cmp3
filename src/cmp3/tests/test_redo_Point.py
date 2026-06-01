@@ -1,9 +1,10 @@
 import unittest
-from typing import *
+from typing import Any, Self
 
 import setdoc
 
-from cmp3.core import CmpABC, cmp_mode
+from cmp3.core.cmp import cmp_mode
+from cmp3.core.CmpABC import CmpABC
 
 __all__ = ["TestPoint"]
 
@@ -14,7 +15,7 @@ class Point(CmpABC):
     __slots__ = ("value",)
 
     @setdoc.basic
-    def __cmp__(self: Self, other: Any) -> int:
+    def __cmp__(self: Self, other: Any) -> Any:
         if isinstance(other, Point):
             return (self.value > other.value) - (self.value < other.value)
         return NotImplemented

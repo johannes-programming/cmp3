@@ -33,8 +33,8 @@ This ABC can serve as a parent for classes using ``__cmp__``.
 
 This abstract magic method is to be implemented in descendant classes returning a value that compares to ``0`` as ``self`` compares to ``other``.
 
-``__eq__(other: Any) -> Any``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``__eq__(other: object) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This magic method is implemented as ``return self.__cmp__(other).__eq__(0)``.
 
@@ -58,8 +58,8 @@ This magic method works analogous to ``__eq__``.
 
 This magic method works analogous to ``__eq__``.
 
-``__ne__(other: Any) -> Any``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``__ne__(other: object) -> Any``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This magic method works analogous to ``__eq__``.
 

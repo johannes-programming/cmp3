@@ -1,7 +1,7 @@
 import unittest
-from typing import *
+from typing import Self
 
-from cmp3.core import cmp
+from cmp3.core.cmp import cmp
 
 __all__ = ["TestCmpFunction"]
 

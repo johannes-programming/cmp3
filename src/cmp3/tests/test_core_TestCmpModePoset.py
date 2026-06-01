@@ -1,17 +1,17 @@
 import math
 import unittest
-from typing import *
+from typing import Self
 
-from cmp3 import core
+from cmp3.core.cmp import cmp
 
 __all__ = ["TestCmpModePoset"]
 
 
 class TestCmpModePoset(unittest.TestCase):
     def test_cmp_uses_poset_mode(self: Self) -> None:
-        self.assertEqual(core.cmp({1}, {1, 2}, mode="le"), -1)
-        self.assertEqual(core.cmp({1, 2}, {1}, mode="le"), 1)
-        self.assertTrue(math.isnan(core.cmp({1}, {2}, mode="le")))
+        self.assertEqual(cmp({1}, {1, 2}, mode="le"), -1)
+        self.assertEqual(cmp({1, 2}, {1}, mode="le"), 1)
+        self.assertTrue(math.isnan(cmp({1}, {2}, mode="le")))
 
 
 if __name__ == "__main__":

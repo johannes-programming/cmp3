@@ -1,10 +1,10 @@
 import math
 import unittest
-from typing import *
+from typing import Any, Self
 
 import setdoc
 
-from cmp3.core import cmp
+from cmp3.core.cmp import cmp
 
 __all__ = ["TestCmpPoset"]
 

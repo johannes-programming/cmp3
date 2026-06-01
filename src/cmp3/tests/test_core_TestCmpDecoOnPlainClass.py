@@ -1,16 +1,16 @@
 import unittest
-from typing import *
+from typing import Any, Self
 
 import setdoc
 
-from cmp3 import core
+from cmp3.core.cmpDeco import cmpDeco
 
 __all__ = ["TestCmpDecoOnPlainClass"]
 
 
 class TestCmpDecoOnPlainClass(unittest.TestCase):
     def test_decorator_on_non_abc_class(self: Self) -> None:
-        @core.cmpDeco
+        @cmpDeco
         class Plain:
             @setdoc.basic
             def __cmp__(self: Self, other: Any) -> Any:
@@ -29,8 +29,8 @@ class TestCmpDecoOnPlainClass(unittest.TestCase):
         p2 = Plain(2)
         p3 = Plain(1)
 
-        self.assertTrue(p1 < p2)
-        self.assertTrue(p2 > p1)
+        self.assertTrue(p1 < p2)  # type: ignore[operator]
+        self.assertTrue(p2 > p1)  # type: ignore[operator]
         self.assertTrue(p1 == p3)
         self.assertTrue(p1 != p2)
 

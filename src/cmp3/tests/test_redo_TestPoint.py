@@ -1,5 +1,6 @@
 import unittest
-from typing import Any, Self
+from types import NotImplementedType
+from typing import Any, Self, cast
 
 import setdoc
 
@@ -18,7 +19,8 @@ class Point(CmpABC):
     def __cmp__(self: Self, other: Any) -> Any:
         if isinstance(other, Point):
             return (self.value > other.value) - (self.value < other.value)
-        return NotImplemented
+        else:
+            return NotImplemented
 
     @setdoc.basic
     def __init__(self: Self, value: int) -> None:

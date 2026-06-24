@@ -1,3 +1,5 @@
+"""This module provides cmp3 functionality."""
+
 from collections.abc import Callable
 from functools import wraps
 from typing import Any, Final, TypeVar

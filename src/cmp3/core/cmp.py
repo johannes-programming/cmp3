@@ -1,3 +1,5 @@
+"""This module provides cmp3 functionality."""
+
 from typing import Any
 
 __all__ = ["cmp"]

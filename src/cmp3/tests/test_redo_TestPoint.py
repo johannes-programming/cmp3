@@ -1,3 +1,5 @@
+"""This module provides cmp3 functionality."""
+
 import unittest
 from types import NotImplementedType
 from typing import Any, Self, cast

@@ -1,3 +1,5 @@
+"""This module provides cmp3 functionality."""
+
 import unittest
 
 __all__ = ["test"]

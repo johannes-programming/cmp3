@@ -1,3 +1,5 @@
+"""This module exposes the public API of cmp3."""
+
 from cmp3.core.cmp import cmp
 from cmp3.core.CmpABC import CmpABC
 from cmp3.core.cmpDeco import cmpDeco

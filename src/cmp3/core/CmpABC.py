@@ -1,3 +1,5 @@
+"""This module provides cmp3 functionality."""
+
 from abc import ABC, abstractmethod
 from typing import Any, Self
 

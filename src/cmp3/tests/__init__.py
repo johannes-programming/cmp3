@@ -1,8 +1,8 @@
 """This module provides cmp3 functionality."""
 
-import unittest
+__all__: list[str] = ["test"]
 
-__all__ = ["test"]
+import unittest
 
 
 def test() -> unittest.TextTestResult:

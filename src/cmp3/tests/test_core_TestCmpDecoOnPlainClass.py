@@ -1,13 +1,13 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["TestCmpDecoOnPlainClass"]
+
 import unittest
 from typing import Any, Self
 
 import setdoc
 
 from cmp3.core.cmpDeco import cmpDeco
-
-__all__ = ["TestCmpDecoOnPlainClass"]
 
 
 class TestCmpDecoOnPlainClass(unittest.TestCase):

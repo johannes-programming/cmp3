@@ -1,5 +1,7 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["TestCmpPoset"]
+
 import math
 import unittest
 from typing import Any, Self
@@ -7,8 +9,6 @@ from typing import Any, Self
 import setdoc
 
 from cmp3.core.cmp import cmp
-
-__all__ = ["TestCmpPoset"]
 
 
 class TestCmpPoset(unittest.TestCase):

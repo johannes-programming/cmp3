@@ -1,11 +1,11 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["TestCmpFunction"]
+
 import unittest
 from typing import Self
 
 from cmp3.core.cmp import cmp
-
-__all__ = ["TestCmpFunction"]
 
 
 class TestCmpFunction(unittest.TestCase):

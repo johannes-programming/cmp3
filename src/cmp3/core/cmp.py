@@ -1,8 +1,8 @@
 """This module provides cmp3 functionality."""
 
-from typing import Any
+__all__: list[str] = ["cmp"]
 
-__all__ = ["cmp"]
+from typing import Any
 
 
 def cmp(x: Any, y: Any, /, *, mode: str = "portingguide") -> Any:

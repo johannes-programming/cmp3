@@ -1,15 +1,15 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["TestCmpFunction"]
+
 import unittest
 from typing import Self
 
 from cmp3.core.cmp import cmp
 
-__all__ = ["TestCmpFunction"]
-
 
 class TestCmpFunction(unittest.TestCase):
-    def test_default_mode_is_portingguide(self: Self) -> None:
+    def test_default_mode_is_portingguide(self: Self, /) -> None:
         self.assertEqual(cmp(1, 1), 0)
         self.assertEqual(cmp(2, 1), 1)
         self.assertEqual(cmp(1, 2), -1)
@@ -20,22 +20,24 @@ class TestCmpFunction(unittest.TestCase):
         # Just checks result; behavior should match portingguide
         self.assertEqual(cmp(3, 4, mode="portingguide"), -1)
 
-    def test_whitespace_modes_first_successful_used(self: Self) -> None:
+    def test_whitespace_modes_first_successful_used(self: Self, /) -> None:
         # "portingguide" works; "equality" would give None instead
         self.assertEqual(cmp(1, 2, mode="portingguide eq_strict"), -1)
 
-    def test_whitespace_modes_falls_back_on_exception(self: Self) -> None:
+    def test_whitespace_modes_falls_back_on_exception(self: Self, /) -> None:
         # int has no __cmp__, so "dunder" fails, then "portingguide" works
         self.assertEqual(cmp(1, 2, mode="magic portingguide"), -1)
 
     def test_whitespace_modes_all_fail_raise_exceptiongroup(
         self: Self,
+        /,
     ) -> None:
+        assertion: Any
         exc: ExceptionGroup
         # For int vs str, "dunder", "poset", and "portingguide" all raise
-        with self.assertRaises(ExceptionGroup) as cm:
+        with self.assertRaises(ExceptionGroup) as assertion:
             cmp(1, "a", mode="magic le portingguide")
-        exc = cm.exception
+        exc = assertion.exception
         # There should be one sub-exception per submode
         self.assertEqual(len(exc.exceptions), 3)
 

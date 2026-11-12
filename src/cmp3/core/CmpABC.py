@@ -1,11 +1,11 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["CmpABC", "cmp", "cmpDeco"]
+
 from abc import ABC, abstractmethod
 from typing import Any, Self
 
 import setdoc
-
-__all__ = ["CmpABC", "cmp", "cmpDeco"]
 
 
 class CmpABC(ABC):

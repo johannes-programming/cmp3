@@ -1,5 +1,7 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["TestCmpABCAndDecoDecoratedBox"]
+
 import unittest
 from typing import Any, Self
 
@@ -7,8 +9,6 @@ import setdoc
 
 from cmp3.core.CmpABC import CmpABC
 from cmp3.core.cmpDeco import cmpDeco
-
-__all__ = ["TestCmpABCAndDecoDecoratedBox"]
 
 
 @cmpDeco

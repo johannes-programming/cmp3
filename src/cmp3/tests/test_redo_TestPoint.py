@@ -1,15 +1,14 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["TestPoint"]
+
 import unittest
-from types import NotImplementedType
-from typing import Any, Self, cast
+from typing import Any, Self
 
 import setdoc
 
 from cmp3.core.cmp import cmp_mode
 from cmp3.core.CmpABC import CmpABC
-
-__all__ = ["TestPoint"]
 
 
 class Point(CmpABC):

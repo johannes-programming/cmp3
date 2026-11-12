@@ -1,5 +1,7 @@
 """This module provides cmp3 functionality."""
 
+__all__: list[str] = ["cmpDeco"]
+
 from collections.abc import Callable
 from functools import wraps
 from typing import Any, Final, TypeVar
@@ -7,9 +9,6 @@ from typing import Any, Final, TypeVar
 from tofunc import tofunc
 
 from ..core.CmpABC import CmpABC
-
-__all__ = ["cmpDeco"]
-
 
 Target = TypeVar("Target")
 
